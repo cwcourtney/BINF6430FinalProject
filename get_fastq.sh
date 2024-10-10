@@ -6,7 +6,7 @@
 #SBATCH --job-name=get_fastq
 #SBATCH --partition=short
 #SBATCH -N 1
-#SBATCH -c 32
+#SBATCH -c 16
 #SBATCH --mem 64G
 #SBATCH -t 8:00:00
 #SBATCH --mail-type=END,FAIL
@@ -26,6 +26,6 @@ do
     mkdir -p $OUTDIR/$sample
     pushd $OUTDIR/$sample
     awk -v sname="$sample" -F, '$2 == sname { print $3 }' "$SAMPLES" | \
-    xargs curl --parallel -O
+    xargs -n1 -P10 curl -O --show-error
     popd
 done
