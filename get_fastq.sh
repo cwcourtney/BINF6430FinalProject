@@ -2,6 +2,9 @@
 
 # Usage: sbatch get_fastq.sh <SampleList>
     # <SampleList> is a csv with 3 columns (no header): SRR, Sample Name, ENA link to fastq
+    # Quickly get all ENA links to fastq by searching for the project ID on https://sra-explorer.info/
+        # COVID project: SRP250732
+        # heart development project: PRJNA658799
 
 #SBATCH --job-name=get_fastq
 #SBATCH --partition=short
@@ -26,6 +29,6 @@ do
     mkdir -p $OUTDIR/$sample
     pushd $OUTDIR/$sample
     awk -v sname="$sample" -F, '$2 == sname { print $3 }' "$SAMPLES" | \
-    xargs -n1 -P10 curl -O --show-error
+    xargs -n1 -P10 curl -O -s --show-error
     popd
 done
