@@ -27,4 +27,5 @@ The steps below, individually described in the following sections, are used to r
 # References
 
 Phipson, B., Sim, C. B., Porrello, E. R., Hewitt, A. W., Powell, J., & Oshlack, A. (2022). propeller: testing for differences in cell type proportions in single cell data. Bioinformatics, 38(20), 4720–4726. https://doi.org/10.1093/bioinformatics/btac582
+
 Zheng, G. X. Y. et al. (2017). Massively parallel digital transcriptional profiling of single cells. Nature Communications 8: 1-12, doi:10.1038/ncomms14049
