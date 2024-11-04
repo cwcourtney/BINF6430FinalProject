@@ -29,3 +29,9 @@ cellranger count \
 --create-bam=true \
 --localcores=$SLURM_CPUS_PER_TASK \
 --localmem=$SLURM_MEM_PER_NODE
+
+# Copy key outputs
+mkdir /home/${USER}/propeller
+cp $SAMPLE/outs/filtered_feature_bc_matrix.h5 /home/${USER}/propeller/
+cp -r $SAMPLE/outs/filtered_feature_bc_matrix /home/${USER}/propeller/
+cp $SAMPLE/outs/web_summary.html /home/${USER}/propeller/
