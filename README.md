@@ -167,7 +167,7 @@ CCTTTCCTGTTCACTCTACCCTTTGACTCTAAATCTCAAAGCCAGTGTTGGGGCCCAGTGGCTCCATTCGATTGAAACAT
 `-- web_summary.html
 ```
 
-# BALF_C141_seurat.Rmd
+## BALF_C141_seurat.Rmd
 
 **Purpose**: Conduct post-processing analysis on the filtered feature barcode matrix from a single selected sample, BALF-C141, using the R package `Seurat`.
 
