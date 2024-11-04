@@ -133,7 +133,47 @@ CCTTTCCTGTTCACTCTACCCTTTGACTCTAAATCTCAAAGCCAGTGTTGGGGCCCAGTGGCTCCATTCGATTGAAACAT
 
 **Purpose**: Runs cellranger in `count` mode to perform sample de-multiplexing, barcode processing, and single-cell 5’ UMI counting with human GRCh38 as the reference genome.
 
+**Input**: FASTQs for the sample must be located under `/scratch/${USER}/data/<SampleName>/`
+
+**Output**: Creates default CellRanger outputs inside the same folder as the FASTQs: `/scratch/${USER}/data/<SampleName>/<SampleName>/`. Key files are moved to `/home/${USER}/propeller`.
+
+**Example Usage**: The script is currently hardcoded to create counts for the FASTQs located under `/scratch/${USER}/data/BALF-C141` only but may be modified to loop over multiple samples.
+
+**Example Output**: The key outputs reside in the subfolder `outs/`, with the following file structure. The files we are primarily interested in are the summary report `web_summary.html` and the feature barcode matrix `filtered_feature_bc_matrix.h5`.
+
+```
+.
+|-- analysis
+|   |-- clustering
+|   |-- diffexp
+|   |-- pca
+|   |-- tsne
+|   `-- umap
+|-- cloupe.cloupe
+|-- filtered_feature_bc_matrix
+|   |-- barcodes.tsv.gz
+|   |-- features.tsv.gz
+|   `-- matrix.mtx.gz
+|-- filtered_feature_bc_matrix.h5
+|-- metrics_summary.csv
+|-- molecule_info.h5
+|-- possorted_genome_bam.bam
+|-- possorted_genome_bam.bam.bai
+|-- raw_feature_bc_matrix
+|   |-- barcodes.tsv.gz
+|   |-- features.tsv.gz
+|   `-- matrix.mtx.gz
+|-- raw_feature_bc_matrix.h5
+`-- web_summary.html
+```
+
+# BALF_C141_seurat.Rmd
+
+**Purpose**: Conduct post-processing analysis on the filtered feature barcode matrix from a single selected sample, BALF-C141, using the R package `Seurat`.
+
 # References
+
+Liao, M., Liu, Y., Yuan, J. et al. Single-cell landscape of bronchoalveolar immune cells in patients with COVID-19. Nat Med 26, 842–844 (2020). https://doi.org/10.1038/s41591-020-0901-9
 
 Phipson, B., Sim, C. B., Porrello, E. R., Hewitt, A. W., Powell, J., & Oshlack, A. (2022). propeller: testing for differences in cell type proportions in single cell data. Bioinformatics, 38(20), 4720–4726. https://doi.org/10.1093/bioinformatics/btac582
 
