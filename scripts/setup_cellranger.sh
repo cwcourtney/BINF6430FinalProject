@@ -3,7 +3,7 @@
 # Directories
 OUTDIR=/scratch/${USER}/data
 mkdir -p $OUTDIR
-$SAMPLE="BALF-C141" # testing with just 1 sample at the moment
+SAMPLE="BALF-C141" # testing with just 1 sample at the moment
 FASTQDIR=$OUTDIR/$SAMPLE/
 
 # Suffixes

@@ -2,9 +2,6 @@
 
 # Usage: sbatch get_fastq.sh <SampleList>
     # <SampleList> is a csv with 3 columns (no header): SRR, Sample Name, ENA link to fastq
-    # Quickly get all ENA links to fastq by searching for the project ID on https://sra-explorer.info/
-        # COVID project: SRP250732
-        # heart development project: PRJNA658799
 
 #SBATCH --job-name=get_fastq
 #SBATCH --partition=short
@@ -13,8 +10,8 @@
 #SBATCH --mem 64G
 #SBATCH -t 8:00:00
 #SBATCH --mail-type=END,FAIL
-#SBATCH --out=logs/%x_%j.log
-#SBATCH --error=logs/%x_%j.err
+#SBATCH --out=../logs/%x_%j.log
+#SBATCH --error=../logs/%x_%j.err
 
 # Directories
 OUTDIR=/scratch/${USER}/data
@@ -23,7 +20,7 @@ mkdir -p $OUTDIR
 SAMPLES=$(realpath "$1")
 
 # Iterate through each SRR of each sample
-for sample in $(awk -F, '{ print $2 }' "$SAMPLES" | uniq) # Fetal1, Fetal2, ..., Adult2, Adult3
+for sample in $(awk -F, '{ print $2 }' "$SAMPLES" | uniq)
 do
     echo "$(date) Processing sample: $sample"
     mkdir -p $OUTDIR/$sample
